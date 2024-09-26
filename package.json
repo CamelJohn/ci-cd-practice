@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "build": "node esbuild.mjs"
   },
   "keywords": [],
   "author": "",
@@ -31,6 +32,7 @@
     "@types/jsonwebtoken": "^9.0.7",
     "@types/morgan": "^1.9.9",
     "@types/node": "^22.7.3",
+    "esbuild": "^0.24.0",
     "eslint": "^9.11.1",
     "globals": "^15.9.0",
     "typescript": "^5.6.2",
