@@ -1,2 +1,2 @@
 # ci-cd-practice
-A repo for practicing basic ci/cd on **GitHub**
+A repo for practicing and showcasing basic ci/cd on **GitHub**
