@@ -8,7 +8,8 @@
     "lint": "eslint .",
     "format": "eslint --fix .",
     "check-types": "tsc --noEmit",
-    "build": "node esbuild.mjs"
+    "build": "node esbuild.mjs",
+    "dev": "ts-node src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -22,7 +23,8 @@
     "http-errors": "^2.0.0",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",
