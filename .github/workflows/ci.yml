@@ -17,3 +17,18 @@ jobs:
         run: npm install
       - name: Lint
         run: npm run lint
+  
+  check-types:
+    name: Check typescript types
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install
+        run: npm install
+      - name: Check types
+        run: npm run check-types
