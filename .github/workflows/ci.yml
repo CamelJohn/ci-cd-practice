@@ -64,7 +64,6 @@ jobs:
 
   run-integration-tests:
     name: Integration tests
-    needs: [run-unit-tests]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
