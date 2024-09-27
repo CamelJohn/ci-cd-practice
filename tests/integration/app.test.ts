@@ -5,10 +5,10 @@ import httpWrapper from 'supertest'
 describe('Web app should satisfy following:', () => {
     let server: Server;
 
-    beforeEach(async () => {
+    beforeAll(async () => {
         server = start(3000);
     });
-    afterEach(async () => {
+    afterAll(async () => {
         if (server) {
             server.close();
         }
