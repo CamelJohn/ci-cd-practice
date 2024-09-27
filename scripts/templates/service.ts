@@ -1,12 +1,12 @@
-import { type Service } from './interface';
+import { type __module__Dto, type create__module__Dto, type Service } from './interface';
 import { v4 as uuidv4 } from 'uuid';
 import createHttpError from 'http-errors';
 
 class __module__Factory {
-    constructor(public dto: any, public id = uuidv4()) {}
+    constructor(public name: create__module__Dto['name'], public id = uuidv4()) {}
 }
 
-const __module__Store = new Map<string, any>([]);
+const __module__Store = new Map<string, __module__Dto>([]);
 
 const __module__Service: Service<any> = {
     List: () => {
@@ -22,14 +22,15 @@ const __module__Service: Service<any> = {
 
         return Promise.resolve(item);
     },
-    CreateOne: (dto: any) => {
-        const exists = __module__Store.get(dto.id);
+    CreateOne: (dto: create__module__Dto) => {
+        const exists = Array.from(__module__Store.values()).some((item) => item.name === dto.name);
 
         if (exists) {
-            throw new createHttpError.Conflict(`__dto__ with id:${dto.id} already exists`);
+            const item = Array.from(__module__Store.entries()).find(([,item]) => item.name === dto.name);
+            throw new createHttpError.Conflict(`__dto__ with id:${item?.[1].id} already exists`);
         }
 
-        const item = new __module__Factory(dto);
+        const item = new __module__Factory(dto.name);
 
         __module__Store.set(item.id, item);
 

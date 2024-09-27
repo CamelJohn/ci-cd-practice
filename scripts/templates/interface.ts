@@ -2,11 +2,16 @@ import { type RequestHandler } from 'express';
 import { type ParamsDictionary } from 'express-serve-static-core';
 
 export interface __module__Dto {
+    id: string;
+    name: string;
+}
+
+export interface create__module__Dto {
     name: string;
 }
 
 export interface __module__Request {
-    __dto__: __module__Dto;
+    __dto__: create__module__Dto;
 }
 
 export interface __module__RequestWithId extends __module__Request {
@@ -32,7 +37,7 @@ export interface Controller {
 export interface Service<T> {
     List: () => Promise<T[]>;
     GetOne: (id: string) => Promise<T>;
-    CreateOne: (dto: __module__Dto) => Promise<T>;
-    UpdateOne: (id: string, dto: __module__Dto) => Promise<void>;
+    CreateOne: (dto: create__module__Dto) => Promise<T>;
+    UpdateOne: (id: string, dto: create__module__Dto) => Promise<void>;
     DeleteOne: (id: string) => Promise<void>;
 }
