@@ -8,10 +8,7 @@ export default {
     moduleNameMapper: {
         '^@/(.*)$': '<rootDir>/src/$1',
     },
-    testMatch: [
-      '**/__tests__/**/*.+(ts|tsx|js)',
-      '**/?(*.)(spec|test).+(ts|tsx|js)'
-    ],
+    testMatch: ['<rootDir>/**/*.spec.ts'],
     testEnvironmentOptions: {
         node: {
             loader: 'ts-jest/loader',

@@ -10,7 +10,8 @@
     "check-types": "tsc --noEmit",
     "build": "node esbuild.mjs",
     "dev": "ts-node src/index.ts",
-    "test": "jest",
+    "test:unit": "jest",
+    "test:integration": "jest --config=jest.integration.config.js",
     "test:watch": "jest --watch"
   },
   "keywords": [],
