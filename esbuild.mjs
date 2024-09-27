@@ -1,11 +1,12 @@
 import esBuild from 'esbuild';
 
 esBuild.build({
-    entryPoints: ['src/index.ts'],
-    outfile: 'dist/index.js',
-    bundle: true,
-    minify: true,
+    entryPoints: ['src/**/*.ts'],
+    outdir: 'dist',
+    bundle: false,
+    minify: false,
     platform: 'node',
-    format: 'esm',
-    logLevel: 'verbose',
+    format: 'cjs',
+    target: 'node20',
+    logLevel: 'info',
 }).catch(() => process.exit(1))
