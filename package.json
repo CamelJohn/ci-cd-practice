@@ -13,7 +13,8 @@
     "dry-run": "node dist/index.js",
     "test:unit": "jest",
     "test:integration": "jest --config=jest.integration.config.js",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "generate": "node ./scripts/generate.js --"
   },
   "keywords": [],
   "author": "",
@@ -28,7 +29,8 @@
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",
@@ -41,6 +43,7 @@
     "@types/morgan": "^1.9.9",
     "@types/node": "^22.7.3",
     "@types/supertest": "^6.0.2",
+    "@types/uuid": "^10.0.0",
     "esbuild": "^0.24.0",
     "eslint": "^9.11.1",
     "globals": "^15.9.0",
