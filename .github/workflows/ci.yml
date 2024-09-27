@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   lint:
-    name: Lint codebase
+    name: Lint codebase (& formt)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -16,7 +16,7 @@ jobs:
       - name: Install
         run: npm install
       - name: Lint
-        run: npm run lint
+        run: npm run lint:fix
   
   check-types:
     name: Check typescript

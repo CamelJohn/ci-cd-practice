@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "lint": "eslint .",
-    "format": "eslint --fix .",
+    "lint:fix": "eslint --fix .",
     "check-types": "tsc --noEmit",
     "build": "node esbuild.mjs",
     "dev": "ts-node src/index.ts",
