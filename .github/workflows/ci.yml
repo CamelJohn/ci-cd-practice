@@ -7,10 +7,8 @@ jobs:
     name: Lint codebase (& format)
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup node
-        uses: ./.github/workflows/setup-node
+      - name: Setup
+        uses: ./github/workflows/setup-node.yml
       - name: Install
         run: npm install
       - name: Lint
@@ -20,10 +18,8 @@ jobs:
     name: Check typescript
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup node
-        uses: ./.github/workflows/setup-node
+      - name: Setup
+        uses: ./github/workflows/setup-node.yml
       - name: Install
         run: npm install
       - name: Check types
@@ -34,10 +30,8 @@ jobs:
     needs: [check-types]
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup node
-        uses: ./.github/workflows/setup-node
+      - name: Setup
+        uses: ./github/workflows/setup-node.yml
       - name: Install
         run: npm install
       - name: Build
@@ -47,10 +41,8 @@ jobs:
     name: Unit tests
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup node
-        uses: ./.github/workflows/setup-node
+      - name: Setup
+        uses: ./github/workflows/setup-node.yml
       - name: Install
         run: npm install
       - name: Run tests
@@ -61,10 +53,8 @@ jobs:
     needs: [run-unit-tests]
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup node
-        uses: ./.github/workflows/setup-node
+      - name: Setup
+        uses: ./github/workflows/setup-node.yml
       - name: Install
         run: npm install
       - name: Run tests
