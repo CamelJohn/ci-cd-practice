@@ -6,7 +6,7 @@ describe('Task module should satisfy the following:', () => {
     let server: Server;
 
     beforeAll(async () => {
-        server = start(3000);
+        server = start(3001);
     });
     afterAll(async () => {
         if (server) {
