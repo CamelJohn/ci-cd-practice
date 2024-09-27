@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup node
-        uses: ./.github/actions/_setup-node
+        uses: ./.github/workflows/setup-node
       - name: Install
         run: npm install
       - name: Lint
@@ -23,7 +23,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup node
-        uses: ./.github/actions/_setup-node
+        uses: ./.github/workflows/setup-node
       - name: Install
         run: npm install
       - name: Check types
@@ -37,7 +37,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup node
-        uses: ./.github/actions/_setup-node
+        uses: ./.github/workflows/setup-node
       - name: Install
         run: npm install
       - name: Build
@@ -50,7 +50,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup node
-        uses: ./.github/actions/_setup-node
+        uses: ./.github/workflows/setup-node
       - name: Install
         run: npm install
       - name: Run tests
@@ -64,7 +64,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup node
-        uses: ./.github/actions/_setup-node
+        uses: ./.github/workflows/setup-node
       - name: Install
         run: npm install
       - name: Run tests
