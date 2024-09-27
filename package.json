@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A repo for practicing and showcasing basic ci/cd on **GitHub**",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "lint": "eslint .",
     "format": "eslint --fix .",
