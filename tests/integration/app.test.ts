@@ -1,10 +1,18 @@
-import { start, stop } from '../../src';
-import webApp from '../../src/app';
-import httpWrapper from 'supertest';
+import { type Server } from 'node:http';
+import webApp, { start } from '../../src/app';
+import httpWrapper from 'supertest'
 
 describe('Web app should satisfy following:', () => {
-    beforeEach(async () => start(3000));
-    afterEach(async () => stop());
+    let server: Server;
+
+    beforeEach(async () => {
+        server = start(3000);
+    });
+    afterEach(async () => {
+        if (server) {
+            server.close();
+        }
+    });
     const http = httpWrapper(webApp);
 
     it('handles non existent routes', async () => {

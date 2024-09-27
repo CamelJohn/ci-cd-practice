@@ -14,8 +14,13 @@ webApp.use(helmet());
 webApp.use(morgan('dev'));
 
 webApp.use('/health-check', middleware.health_check);
-webApp.use('/api/v1/', main_router)
+webApp.use('/api/v1/', main_router);
 webApp.use('*', middleware.catch_all);
 webApp.use(middleware.error_handler);
+
+export function start(port = process.env.PORT || 3000) {
+    const server = webApp.listen(port, () => console.info(`Server started listening on port ${port}`));
+    return server;
+}
 
 export default webApp;
