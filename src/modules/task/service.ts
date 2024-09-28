@@ -1,60 +1,45 @@
-import { type TaskDto, type createTaskDto, type Service } from './interface';
-import { v4 as uuidv4 } from 'uuid';
+import { type Service } from './interface';
 import createHttpError from 'http-errors';
+import { PrismaClient, Task } from '@prisma/client';
 
-class TaskFactory {
-    constructor(public name: createTaskDto['name'], public id = uuidv4()) {}
-}
+const client = new PrismaClient();
 
-const TaskStore = new Map<string, TaskDto>([]);
+const TaskService: Service<Task> = {
+    List: () => client.task.findMany({}),
+    GetOne: async (id: string) => {
+        const task = await client.task.findFirst({ where: { id } });
 
-const TaskService: Service<createTaskDto> = {
-    List: () => {
-        const list = Array.from(TaskStore.values());
-        return Promise.resolve(list);
-    },
-    GetOne: (id: string) => {
-        const item = TaskStore.get(id);
-
-        if (!item) {
+        if (!task) {
             throw new createHttpError.NotFound(`task with id:${id} does not exist`);
         }
 
-        return Promise.resolve(item);
+        return task;
     },
-    CreateOne: (dto: createTaskDto) => {
-        const exists = Array.from(TaskStore.values()).some((item) => item.name === dto.name);
+    CreateOne: async (dto: Omit<Task, 'id'>) => {
+        const exists = await client.task.findFirst({ where: { name: dto.name } });
 
         if (exists) {
-            const item = Array.from(TaskStore.entries()).find(([,item]) => item.name === dto.name);
-            throw new createHttpError.Conflict(`task with id:${item?.[1].id} already exists`);
+            throw new createHttpError.Conflict(`task with id:${exists.id} already exists`);
         }
 
-        const item = new TaskFactory(dto.name);
+        const task = await client.task.create({ data: { ...dto } });
 
-        TaskStore.set(item.id, item);
-
-        return Promise.resolve(item);
+        return task;
     },
-    UpdateOne: (id: string, dto: createTaskDto) => {
-        const item = TaskStore.get(id);
-
-        if (!item) {
-            throw new createHttpError.NotFound(`task with id:${id} does not exist`);
-        }
-        TaskStore.set(id, { ...item, ...dto });
-        return Promise.resolve();
+    UpdateOne: async (id: string, dto: Omit<Task, 'id'>) => {
+        await client.task.update({ where: { id }, data: { ...dto } });
+        return;
     },
-    DeleteOne: (id: string) => {
-        const item = TaskStore.get(id);
+    DeleteOne: async (id: string) => {
+        const task = await client.task.findFirst({ where: { id } });
 
-        if (!item) {
+        if (!task) {
             throw new createHttpError.NotFound(`task with id:${id} does not exist`);
         }
 
-        TaskStore.delete(item.id);
+        await client.task.delete({ where: { id } });
         
-        return Promise.resolve();
+        return;
     },
 }
 

@@ -34,10 +34,10 @@ export interface Controller {
     DeleteOne: RequestHandler<ParamsDictionary, void, TaskWithId>;
 }
 
-export interface Service<T> {
+export interface Service<T extends { id: string }> {
     List: () => Promise<T[]>;
     GetOne: (id: string) => Promise<T>;
-    CreateOne: (dto: createTaskDto) => Promise<T>;
-    UpdateOne: (id: string, dto: createTaskDto) => Promise<void>;
+    CreateOne: (dto: Omit<T, 'id'>) => Promise<T>;
+    UpdateOne: (id: string, dto: Omit<T, 'id'>) => Promise<void>;
     DeleteOne: (id: string) => Promise<void>;
 }
