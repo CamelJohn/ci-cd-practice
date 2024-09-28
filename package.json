@@ -12,7 +12,7 @@
     "dev": "ts-node src/index.ts",
     "dry-run": "node dist/index.js",
     "test:unit": "jest",
-    "test:integration:compose": "docker compose --file tests/integration/docker-compose.yml --env-file=../.env up --exit-code-from cleanup-service",
+    "test:integration:compose": "docker compose --file tests/integration/docker-compose.yml --env-file=../.env.test up --exit-code-from cleanup-service",
     "test:prisma:migrate": "prisma migrate deploy",
     "test:integration": "npm run test:integration:compose && test:prisma:migrate && jest --config=jest.integration.config.js",
     "test:watch": "jest --watch",
