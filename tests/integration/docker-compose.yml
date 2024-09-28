@@ -23,8 +23,8 @@ services:
 
   backend:
     build: 
-      context: ../../src
-      dockerfile: ../../src/Dockerfile
+      context: ../..
+      dockerfile: src/Dockerfile
     ports:
       - 3000:3000
     depends_on:
